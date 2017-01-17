@@ -33,11 +33,12 @@ echo "DECLARE_APP(spinLeftRight spinLeftRight.c)" >> "${cmakeListPath}"
 # get the paths and append to the file
 for i in $(ls -d */); do
 	for f in ${i}* ; do
-		echo $f
 		path=${directory}${f}
-		name=${f%%.*}
-		name=${name#*/}
-		echo "DECLARE_APP(${name} \"${path}\")" >> "${cmakeListPath}"
+		if [ "${path##*.}" == "c" ]; then
+			name=${f%%.*}
+			name=${name#*/}
+			echo "DECLARE_APP(\"${i%%/*} ${name}\" \"${path}\")" >> "${cmakeListPath}"
+		fi
 	done
 done
 
