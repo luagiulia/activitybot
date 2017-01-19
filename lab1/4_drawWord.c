@@ -3,6 +3,7 @@
 
 #define TICKS_ANGLE 0.284
 #define SQRT_2 1.4142
+#define GRIDSIZE 100
 
 enum{right=1,left=-1};
 enum{up=1,down=-1};
@@ -26,9 +27,11 @@ int turnAngle(int angDeg, int direction)
 	return 0;
 }
 
-int getToAngle(int *oldAngle, int newAngle)
+
+/* no pointer for now, put plan to use array of pos and angle */
+int getToAngle(int oldAngle, int newAngle)
 {
-	int delta = *oldAngle - newAngle;
+	int delta = oldAngle - newAngle;
 	int sign;
 	if(delta>0) {sign = 1;}
 	else {sign = -1;delta = -delta;}
@@ -53,7 +56,18 @@ int drawChar(char letter)
 {
 	switch(letter){
 		case 'A' :
-		break;
+			drive_goto(GRIDSIZE,GRIDSIZE);
+			turnAngle(90,1);
+			drive_goto(GRIDSIZE,GRIDSIZE);
+			turnAngle(90,1);
+			drive_goto(GRIDSIZE/2,GRIDSIZE/2);
+			turnAngle(90,1);
+			drive_goto(GRIDSIZE,GRIDSIZE);
+			turnAngle(180,1);
+			drive_goto(GRIDSIZE,GRIDSIZE);
+			turnAngle(90,1);
+			drive_goto(GRIDSIZE/2,GRIDSIZE/2);
+			break;
 		case 'B' :
 		break;
 		case 'C' :
