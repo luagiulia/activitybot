@@ -31,9 +31,5 @@ int main(int argc, const char* argv[])
   	drive_goto(ticksForMeter,ticksForMeter);
   	turnAngle(90,right);
   }
-  // for(i=0;i<4;i++){
-  //  drive_goto(ticksForMeter,ticksForMeter);
-  //  drive_goto(26,-25);
-  // }
   return 0;
 }
